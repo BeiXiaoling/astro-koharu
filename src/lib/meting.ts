@@ -132,7 +132,15 @@ export async function resolvePlaylist(urls: string[], apiUrl?: string): Promise<
   const results = await Promise.allSettled(
     urls.map((url) => {
       const parsed = parseMusicUrl(url);
-      if (!parsed) return Promise.resolve([]);
+      if (!parsed) {
+        // fnOS 补丁：支持音频直链（本地音乐等），以文件名作为曲名
+        if (/\.(mp3|m4a|flac|ogg|wav|aac|opus)(\?|#|$)/i.test(url)) {
+          const base = url.split('?')[0].split('#')[0].split('/').pop() || '';
+          const name = decodeURIComponent(base.replace(/\.[^.]+$/, '')) || '本地音乐';
+          return Promise.resolve([{ name, artist: '', url, pic: '', lrc: '' }] as MetingSong[]);
+        }
+        return Promise.resolve([]);
+      }
       return fetchMeting(parsed.server, parsed.type, parsed.id, apiUrl);
     }),
   );

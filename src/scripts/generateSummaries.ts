@@ -34,9 +34,11 @@ const CACHE_VERSION = '1';
 
 // LLM API settings (OpenAI-compatible)
 // Works with: LM Studio, Ollama, OpenAI, etc.
-const API_BASE_URL = 'http://127.0.0.1:1234/v1/';
-const API_KEY = 'lm-studio'; // LM Studio doesn't require a real key
-const DEFAULT_MODEL = 'qwen/qwen3-4b-2507';
+// fnOS 补丁：改为读取环境变量，支持任意 OpenAI 兼容服务
+// （DeepSeek / 硅基流动 / 智谱 / OpenAI / Ollama / LM Studio 均可）
+const API_BASE_URL = process.env.SUMMARY_API_BASE_URL || 'http://127.0.0.1:1234/v1/';
+const API_KEY = process.env.SUMMARY_API_KEY || 'lm-studio';
+const DEFAULT_MODEL = process.env.SUMMARY_MODEL || 'qwen/qwen3-4b-2507';
 
 // --------- Parse CLI Arguments ---------
 function parseArgs(): { model: string; force: boolean } {
@@ -131,7 +133,9 @@ function extractSlug(filePath: string, link?: string): string {
 
 async function checkApiRunning(): Promise<boolean> {
   try {
-    const response = await fetch(`${API_BASE_URL}models`);
+    const response = await fetch(`${API_BASE_URL}models`, {
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    });
     return response.ok;
   } catch {
     return false;

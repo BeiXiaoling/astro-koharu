@@ -67,10 +67,17 @@ async function main() {
   const CMS_API_KEY = process.env.CMS_API_KEY;
   app.use('/api/*', async (c, next) => {
     // Validate Host header to prevent DNS rebinding attacks
+    // fnOS 补丁：放行 RFC1918 私有网段，允许直接用 NAS 局域网 IP 访问 CMS。
+    // 公网域名等非私有来源仍被拒绝，保留 anti-DNS-rebinding 防护。
     const host = c.req.header('host') || '';
-    const isLocalhost = /^(localhost|127\.0\.0\.1|::1)(:\d+)?$/.test(host);
-    if (!isLocalhost) {
-      return c.json({ error: 'CMS is only accessible from localhost' }, 403);
+    const hostname = host.split(':')[0];
+    const isAllowedHost =
+      /^(localhost|127\.0\.0\.1|::1)$/.test(hostname) ||
+      /^192\.168\.\d{1,3}\.\d{1,3}$/.test(hostname) ||
+      /^10\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(hostname) ||
+      /^172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}$/.test(hostname);
+    if (!isAllowedHost) {
+      return c.json({ error: 'CMS is only accessible from localhost or LAN' }, 403);
     }
 
     // Optional API key authentication

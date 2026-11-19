@@ -1,0 +1,23 @@
+:8080 {
+	root * /vol1/www/astro-koharu/dist
+	encode gzip zstd
+	file_server
+
+	# 指纹资源：一年强缓存
+	@assets path *.js *.css *.woff2 *.woff *.ttf *.png *.jpg *.jpeg *.webp *.avif *.svg *.ico
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+
+	# 搜索索引：一天
+	@pagefind path /pagefind/*
+	header @pagefind Cache-Control "public, max-age=86400"
+
+	# RSS / sitemap：一小时
+	@feeds path /rss.xml /sitemap-index.xml /sitemap-*.xml
+	header @feeds Cache-Control "public, max-age=3600"
+
+	# 404 回退
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}

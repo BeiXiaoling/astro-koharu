@@ -4,23 +4,13 @@ title: "歌单"
 description: "我喜欢的音乐"
 ---
 
-这里可以放你喜欢的音乐歌单。
+本地音乐，共 4 首。
 
-使用 `{% media audio %}` 标签嵌入网易云音乐或 QQ 音乐歌单：
-
-```markdown
 {% media audio %}
 - title: 我的歌单
   list:
-    - https://music.163.com/#/playlist?id=你的歌单ID
-{% endmedia %}
-```
-
-{% media audio %}
-- title: 诗岸歌单 山山～全是山山～
-  list:
-    - https://music.163.com/#/playlist?id=8676645748
-- title: 超かぐや姫！
-  list:
-    - https://music.163.com/#/album?id=358640968
+    - /music/Best%20Friend%20-%20%E8%A5%BF%E9%87%8E%E3%82%AB%E3%83%8A.mp3
+    - /music/Butter-Fly-%E5%8A%A8%E7%94%BB%E3%80%8A%E6%95%B0%E7%A0%81%E6%9A%B4%E9%BE%99%E5%A4%A7%E5%86%92%E9%99%A9%E3%80%8B%E6%8F%92%E6%9B%B2%20-%20%E5%92%8C%E7%94%B0%E5%85%89%E5%8F%B8.mp3
+    - /music/Lemon%20-%20%E7%B1%B3%E6%B4%A5%E7%8E%84%E5%B8%AB.mp3
+    - /music/LIKE%20YOU%20o(%E3%80%89%E3%80%88%20%3D%20%E3%80%89%E3%80%88)o%20LOVE%20YOU.mp3
 {% endmedia %}

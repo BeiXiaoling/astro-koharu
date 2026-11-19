@@ -1,0 +1,44 @@
+# =============================================================================
+# 个性化站点配置
+# =============================================================================
+# 这个文件是 config/site.yaml 的「权威来源」。
+# 修改这里的值后执行 ./sync.sh，脚本会把它们写回 site.yaml。
+# 升级（./update.sh）时 site.yaml 会被丢弃重建，本文件不受影响。
+# =============================================================================
+
+site:
+  title: Aha              # 网站名称
+  alternate: X24Moe             # 网站英文名，用于页脚、Logo、@ handle
+  subtitle: 群星沉默不语，但我说，要有笑声      # 网站副标题
+  name: x24moe                     # 作者名称
+  description: 一个基于 Astro 的现代化博客主题
+  avatar: /img/avatar.webp
+  showLogo: false
+  author: x24moe
+  url: https://www.x24moe.com
+  defaultOgImage: /img/avatar.webp
+  startYear: 2026
+  timezone: Asia/Shanghai
+  keywords:
+    - 下载
+    - anime
+    - download
+    - 分享
+
+# 追番页面（bgm.tv 用户名或数字 ID）
+# 想关闭：把 site.yaml 的 bangumi 段整段注释掉即可
+bangumi:
+  userId: x24moe
+
+# 默认封面池（文章未指定 cover 时随机选一张）
+defaultCoverList:
+  - /img/cover-custom/01.webp
+  - /img/cover-custom/02.webp
+  - /img/cover-custom/03.webp
+  - /img/cover-custom/04.webp
+  - /img/cover-custom/05.webp
+  - /img/cover-custom/06.webp
+  - /img/cover-custom/07.webp
+  - /img/cover-custom/08.webp
+  - /img/cover-custom/09.webp
+  - /img/cover-custom/10.webp

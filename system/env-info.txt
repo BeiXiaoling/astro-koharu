@@ -1,0 +1,23 @@
+# 运行环境清单（2026-11-18 记录）
+
+系统      Debian GNU/Linux 12 (bookworm) / fnOS
+架构      aarch64 (Cortex-A55 x4 @ 1.9GHz)
+内存      3.7 GiB
+Docker    28.5.2（本方案不使用）
+
+## 关键组件
+
+Node      v22.23.5          /opt/node22（官方 arm64 tar 解压，软链到 /usr/local/bin）
+pnpm      10.28.2           corepack 激活，store 位于 /vol1/www/.pnpm-store
+Caddy     v2.11.9           /usr/local/bin/caddy（47 MB 单文件）
+项目      astro-koharu      /vol1/www/astro-koharu（git dc6e51b v7.7.5）
+
+## 端口
+
+8080      博客正式站         Caddy → dist/
+4321      dev 预览           pnpm dev（按需启动）
+4322      CMS 后台           pnpm cms（按需启动）
+
+## systemd
+
+caddy-koharu.service       enabled + active，User=fnOS，开机自启

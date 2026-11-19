@@ -7,7 +7,7 @@
     "node": ">=22.20.0"
   },
   "scripts": {
-    "dev": "pnpm koharu migrate --check && astro dev",
+    "dev": "pnpm koharu migrate --check && astro dev --host 0.0.0.0 --port 4321",
     "generate:lqips": "npx tsx src/scripts/generateLqips.ts",
     "generate:similarities": "npx tsx src/scripts/generateSimilarities.ts",
     "generate:similarities:gpu": "npx tsx src/scripts/generateSimilarities.ts --device gpu",

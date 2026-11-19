@@ -1,0 +1,102 @@
+friends:
+  groups:
+    - id: familiar
+      title: 熟人
+      description: 常有交流、彼此熟悉的朋友。
+    - id: community
+      title: 友链小伙伴
+      description: 通过博客结识、交换友链的小伙伴。
+    - id: following
+      title: 单向关注
+      description: 喜欢阅读、推荐给大家的博客。
+  intro:
+    title: 友情链接 # 页面标题
+    subtitle: 欢迎交换友链！ # 页面副标题
+    applyTitle: 申请友链 # 申请区块标题
+    applyDesc: 请在本页留言，格式如下 # 申请说明
+    exampleYaml: | # 申请格式示例，会显示在页面上
+      - site: 你的博客名称 # 站点名称
+        url: https://your-blog.com/ # 站点网址
+        owner: 你的昵称 # 昵称
+        desc: 站点简介 # 站点简介
+        image: https://your-blog.com/avatar.jpg # 头像链接
+        color: "#ffc0cb" # 主题色（可选）
+  data: # 友链列表；同组内按这里的顺序展示
+    - site: 余弦の博客
+      url: https://blog.cosine.ren
+      owner: cos
+      desc: FE / ACG / 手工 / 深色模式强迫症 / INFP / 兴趣广泛养两只猫的老宅女 / remote
+      image: https://blog.cosine.ren/img/avatar.webp
+      color: '#ed788b'
+      group: familiar
+    - site: 示例博客 A
+      url: https://example-a.com
+      owner: Alice
+      desc: 一个热爱技术的开发者
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Alice
+      color: '#BEDCFF'
+      group: familiar
+    - site: 示例博客 B
+      url: https://example-b.com
+      owner: Bob
+      desc: 分享生活与技术的小站
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Bob
+      color: '#FBC1CC'
+      group: community
+    - site: 示例博客 C
+      url: https://example-c.com
+      owner: Carol
+      desc: 记录学习与成长的地方
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Carol
+      color: '#ABDCFF'
+      group: community
+    - site: 示例博客 D
+      url: https://example-d.com
+      owner: Dave
+      desc: 喜欢折腾键盘和终端
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Dave
+      color: '#C8E6C9'
+      group: community
+    - site: 示例博客 E
+      url: https://example-e.com
+      owner: Eve
+      desc: 设计、插画与日常碎碎念
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Eve
+      color: '#E1BEE7'
+      group: following
+    - site: 示例博客 F
+      url: https://example-f.com
+      owner: Frank
+      desc: 长文写作与阅读笔记
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Frank
+      color: '#FFE0B2'
+      group: following
+    # 不写 group（或写了不存在的分组 id）的友链会归入最后的「未分组」
+    - site: 示例博客 G
+      url: https://example-g.com
+      owner: Grace
+      desc: 还没想好放在哪一组的新朋友
+      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Grace
+      color: '#B2EBF2'
+
+# =============================================================================
+# Announcements
+# 公告系统 - 在页面顶部显示重要通知
+# =============================================================================
+# 字段说明：
+#   id: 唯一标识符，用于记录用户已读状态（localStorage）
+#   title: 公告标题
+#   content: 公告内容文字
+#   type: 类型，影响样式颜色 (info/success/warning/error)
+#   priority: 优先级数字，数值越大排序越靠前
+#   color: (可选) 自定义颜色，覆盖 type 默认色
+#   publishDate: 发布日期，格式 'YYYY-MM-DD'
+#   startDate: (可选) 开始显示时间，ISO 8601 格式
+#   endDate: (可选) 结束显示时间，过期后自动隐藏
+#   link: (可选) 相关链接
+#     url: 链接地址
+#     text: 链接文字
+#     external: 是否在新窗口打开 (true/false)
+# -----------------------------------------------------------------------------
+# 取消下方注释即可启用公告示例：
+# -----------------------------------------------------------------------------

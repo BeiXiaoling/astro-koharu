@@ -164,21 +164,17 @@ const localEditors =
 let summaryText: string | null = null;
 let summarySource: SummarySource | null = null;
 
-if (post.data.description) {
-  // 优先使用手写描述
+// fnOS 补丁：AI 摘要优先于手写 description，无摘要时再回退到描述与自动提取
+const aiSummary = getPostSummary(postSlug);
+if (aiSummary) {
+  summaryText = aiSummary;
+  summarySource = 'ai';
+} else if (post.data.description) {
   summaryText = post.data.description;
   summarySource = 'description';
 } else {
-  // 尝试获取 AI 摘要
-  const aiSummary = getPostSummary(postSlug);
-  if (aiSummary) {
-    summaryText = aiSummary;
-    summarySource = 'ai';
-  } else {
-    // 降级到自动提取
-    summaryText = extractTextFromMarkdown(post.body ?? '', 200);
-    summarySource = 'auto';
-  }
+  summaryText = extractTextFromMarkdown(post.body ?? '', 200);
+  summarySource = 'auto';
 }
 ---
 
